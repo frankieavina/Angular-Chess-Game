@@ -29,7 +29,7 @@ export enum FENChar {
 }
 
 
-// 
+// declaring piece image path constant 
 export const pieceImagePaths: Readonly<Record<FENChar, string>> = {
     [FENChar.WhitePawn]: "assets/pieces/white pawn.svg",
     [FENChar.WhiteKnight]: "assets/pieces/white knight.svg",
@@ -45,6 +45,7 @@ export const pieceImagePaths: Readonly<Record<FENChar, string>> = {
     [FENChar.BlackKing]: "assets/pieces/black king.svg"
 }
 
+// a map that for each key has a string(x + , + y) which are our initial coord for the piece and array of coordinates
 export type SafeSquares = Map<string, Coords[]>;
 
 export enum MoveType {

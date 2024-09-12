@@ -5,6 +5,15 @@ import { Pawn } from "./pieces/pawn";
 import { Piece } from "./pieces/piece";
 import { Rook } from "./pieces/rook";
 
+
+// Forsyth-Edwards notation (FEN) is a standardized representation of chess positions as a string. It describes 
+// the arrangement of the pieces on the board at a given time (a snapshot) as well as information relating to 
+// the game, whose turn it is, castlings etc.
+
+// The FEN notation is made up of six fields separated by spaces. These fields represent, in order: the arrangement
+//  of the pieces, the move, the castling possibilities, the possibility of taking en passant, the number of 
+//  half-moves elapsed, and the move number.
+
 export class FENConverter {
     public static readonly initalPosition: string = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 

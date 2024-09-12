@@ -1,0 +1,53 @@
+<div class="chess-board" [ngClass]="{'rotated': flipMode}">
+    <!-- looping through all our rows on chessBoard view using *ngFor structural directive  -->
+    <div *ngFor="let row of chessBoardView; let x = index" class="row">
+        <!-- looping again through the pieces/square on each row  -->
+         <!-- ngClass directive updates css depending on type of expession evaluation. For instance is isSquareDark is true then the square 
+          should be of class 'dark' otherwise class if 'light'-->
+        <div *ngFor="let piece of row; let y = index" class="square" [ngClass]="{'dark': isSquareDark(x, y), 
+            'light':!isSquareDark(x, y),
+            'selected-square': isSquareSelected(x, y),
+            'last-move': isSquareLastMove(x, y),
+            'king-in-check': isSquareChecked(x, y),
+            'promotion-square': isSquarePromotionSquare(x, y)
+
+
+        }
+            
+            " (click)="move(x, y)">
+
+            <!-- all the safe squares of the selected piece are highlighted with a dot in the middle of the square -->
+            <div [ngClass]="{'safe-square': isSquareSafeForSelectedPiece(x, y)}"></div>
+
+            <!-- if the piece exist set the source image path according to the piece  -->
+            <img *ngIf="piece" [src]="pieceImagePaths[piece]" [alt]="piece" class="piece"
+                [ngClass]="{'rotated': flipMode}">
+        </div>
+    </div>
+
+
+</div>
+
+<!-- we flip the board by switching css classes -->
+<button (click)="flipBoard()">Flip</button>
+
+<!-- redering message when game is over  -->
+<h2 *ngIf="gameOverMessage" class="game-over-message">
+    {{gameOverMessage}}
+</h2>
+
+<!-- rendering that pawn promotion dialog and allowing user to select  -->
+<div *ngIf="isPromotionActive" class="promotion-dialog">
+    <!-- looking through the promotion pieces that can be selected according to our promotionPieces function  -->
+    <img *ngFor="let piece of promotionPieces()" [src]="pieceImagePaths[piece]" (click)="promotePiece(piece)">
+
+    <!-- render a close promotion in case we dont want to promote our piece  -->
+    <span class="close-promotion-dialog" (click)="closePawnPromotionDialog()">
+        &times;
+    </span>
+</div>
+
+<app-move-list [moveList]="moveList" [gameHistoryPointer]="gameHistoryPointer" [gameHistoryLength]="gameHistory.length"
+    (showPreviousPositionEvent)="showPreviousPosition($event)">
+
+</app-move-list>

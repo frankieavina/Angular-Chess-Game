@@ -25,3 +25,18 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Object Oriented Model For Chess Game
+
+### Board
+chessBoard - 2d matrix (grid with x ,y coordinates) of Pieces
+playerColor - color of player 
+chessBoardView - getter which represents board as 2d char matrix from which UI can print board
+
+### Pieces
+FENChar - name (representation) of Pieces using FEN notation
+color - white or color 
+direction - direction of pieces movement as array of coordinates (x,y)
+
+k, q, r, b, n, p => black pieces
+K, Q, R, B, N, P => white pieces
